@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(#ff4f9a, #ff758c);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      color: white;
+    }
+
+    .container {
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+      z-index: 1;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      backdrop-filter: blur(6px);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 220px;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 25px;
+      background: white;
+      color: #ff4f9a;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      background: #ffe1ec;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255,255,255,0.7);
+      font-size: 20px;
+      animation: float 6s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      50% { transform: translateX(6px); }
+      75% { transform: translateX(-6px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Login ❤️</h1>
+
+    <input type="text" id="nama" placeholder="Nama">
+    <br>
+    <input type="password" id="password" placeholder="Password">
+    <br>
+
+    <button onclick="login()">Lanjut</button>
+  </div>
+
+<script>
+  const correctNama = "NEISYA AULIA";
+  const correctPassword = "kesayanganilham";
+  let attempt = 0;
+
+  function login() {
+    const nama = document.getElementById("nama").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const container = document.querySelector(".container");
+
+    if (nama === "" || password === "") {
+      alert("Nama dan Password harus diisi ❤️");
+      return;
+    }
+
+    if (nama === correctNama && password === correctPassword) {
+      alert("Selamat datang NEISYA AULIA ❤️");
+      window.location.href = "final.html";
+    } else {
+      attempt++;
+      container.style.animation = "shake 0.3s";
+      setTimeout(() => {
+        container.style.animation = "fadeIn 1.5s";
+      }, 300);
+
+      if (attempt >= 3) {
+        alert("Salah 3x 💔 Akses ditolak sementara...");
+      } else {
+        alert("Nama atau Password salah 💔");
+      }
+    }
+  }
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
